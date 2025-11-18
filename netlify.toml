@@ -1,0 +1,16 @@
+[build]
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/slack/atlan-setup"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
+  from = "/"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[functions]
+  python_runtime = "3.8"
