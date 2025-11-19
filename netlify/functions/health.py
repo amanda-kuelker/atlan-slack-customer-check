@@ -8,6 +8,9 @@ def handler(event, context):
     """Single Netlify function for Atlan health assessments"""
     
     try:
+        # Add debug logging
+        print(f"Event: {json.dumps(event, indent=2)}")
+        
         # Handle CORS preflight
         if event.get('httpMethod') == 'OPTIONS':
             return cors_response()
@@ -18,8 +21,11 @@ def handler(event, context):
             import base64
             body = base64.b64decode(body).decode('utf-8')
         
+        print(f"Request body: {body}")
+        
         # Check if this is a Slack request (has form data with token)
         is_slack = body and 'token=' in body
+        print(f"Is Slack request: {is_slack}")
         
         if is_slack:
             return handle_slack_command(body)
@@ -28,6 +34,8 @@ def handler(event, context):
             
     except Exception as e:
         print(f"Error: {str(e)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
         return error_response(f"Service error: {str(e)}")
 
 def handle_slack_command(body):
