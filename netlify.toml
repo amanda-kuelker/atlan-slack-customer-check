@@ -12,5 +12,5 @@
   to = "/.netlify/functions/health"
   status = 200
 
-[functions]
-  python_runtime = "3.8"
+[functions."netlify/functions/*"]
+  runtime = "python3.8"
