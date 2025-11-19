@@ -1,25 +1,16 @@
 [build]
+  command = "pip install -r requirements.txt"
   functions = "netlify/functions"
   publish = "."
 
 [[redirects]]
-  from = "/atlan-health"
-  to = "/.netlify/functions/health"
-  status = 200
-
-[[redirects]]
   from = "/slack/atlan-setup"
-  to = "/.netlify/functions/health"
+  to = "/.netlify/functions/slack-command"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/"
   to = "/.netlify/functions/health"
   status = 200
-
-[functions]
-  node_bundler = "esbuild"
-
-[functions."netlify/functions/health"]
-  runtime = "python3.8"
-```
+  force = true
