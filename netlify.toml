@@ -3,6 +3,11 @@
   publish = "."
 
 [[redirects]]
+  from = "/atlan-health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+[[redirects]]
   from = "/slack/atlan-setup"
   to = "/.netlify/functions/health"
   status = 200
@@ -12,5 +17,9 @@
   to = "/.netlify/functions/health"
   status = 200
 
-[functions."netlify/functions/*"]
+[functions]
+  node_bundler = "esbuild"
+
+[functions."netlify/functions/health"]
   runtime = "python3.8"
+```
